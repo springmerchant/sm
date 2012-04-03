@@ -1,11 +1,11 @@
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
-from sm.subscribe.forms import SubscribeForm
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-
-from mailsnake import MailSnake
-
 from django.conf import settings
+
+from sm.subscribe.forms import SubscribeForm
+from mailsnake import MailSnake
 
 
 class SubscribeView(FormView):
