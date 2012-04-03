@@ -4,7 +4,7 @@ from sm.subscribe.forms import SubscribeForm
 
 from mailsnake import MailSnake
 
-from django.conf.settings import MAILCHIMP_API_KEY
+from django.conf import settings
 
 
 class SubscribeView(FormView):
@@ -13,7 +13,7 @@ class SubscribeView(FormView):
 
     def form_valid(self, form):
 
-        ms = MailSnake(MAILCHIMP_API_KEY)
+        ms = MailSnake(settings.MAILCHIMP_API_KEY)
         ms.ListSubscribe()
 
         return HttpResponseRedirect(reverse('subscribe_success'))
