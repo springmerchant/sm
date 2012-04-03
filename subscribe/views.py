@@ -21,9 +21,10 @@ class SubscribeView(FormView):
             email_address = form.cleaned_data['email'],
             merge_vars = {
                 'FNAME': form.cleaned_data['first_name'],
+                'GROUPINGS': [['bcseoguide']],
                 },
             update_existing = True,
-            double_optin = False,
+            double_optin = True,
         )
         return HttpResponseRedirect(reverse('subscribe_success'))
 
