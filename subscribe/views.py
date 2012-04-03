@@ -13,9 +13,18 @@ class SubscribeView(FormView):
 
     def form_valid(self, form):
 
-        ms = MailSnake(settings.MAILCHIMP_API_KEY)
-        ms.ListSubscribe()
 
+        ms = MailSnake(settings.MAILCHIMP_API_KEY)
+
+        ms.ListSubscribe(
+            id = settings.MAILCHIMP_LIST_ID,
+            email_address = form.cleaned_data['email'],
+            merge_vars = {
+                'FNAME': form.cleaned_data['first_name'],
+                },
+            update_existing = True,
+            double_optin = False,
+        )
         return HttpResponseRedirect(reverse('subscribe_success'))
 
 class SuccessView(TemplateView):
