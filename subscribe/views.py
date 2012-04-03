@@ -22,7 +22,7 @@ class SubscribeView(FormView):
             email_address = form.cleaned_data['email'],
             merge_vars = {
                 'FNAME': form.cleaned_data['first_name'],
-                'GROUPINGS': [{'name':'typeofreaders','groups':'bcseoguide'}],
+                'GROUPINGS': [{'name':'reading','groups':'bcseoguide'}],
                 },
             update_existing = True,
             double_optin = True,
