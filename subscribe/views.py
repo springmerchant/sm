@@ -16,7 +16,7 @@ class SubscribeView(FormView):
 
         ms = MailSnake(settings.MAILCHIMP_API_KEY)
 
-        ms.ListSubscribe(
+        ms.listSubscribe(
             id = settings.MAILCHIMP_LIST_ID,
             email_address = form.cleaned_data['email'],
             merge_vars = {
