@@ -1,6 +1,7 @@
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from sm.subscribe.forms import SubscribeForm
+from django.http import HttpResponseRedirect
 
 from mailsnake import MailSnake
 
@@ -21,7 +22,7 @@ class SubscribeView(FormView):
             email_address = form.cleaned_data['email'],
             merge_vars = {
                 'FNAME': form.cleaned_data['first_name'],
-                'GROUPINGS': [['bcseoguide']],
+                'GROUPINGS': [{'name':'typeofreaders','groups':'bcseoguide'}],
                 },
             update_existing = True,
             double_optin = True,
