@@ -1,7 +1,7 @@
 from django import forms
 from bootstrap2.forms import BootstrapForm, Fieldset
 
-class ApiForm(BootstrapForm):
+class SubscribeForm(BootstrapForm):
     class Meta:
         layout = (Fieldset("Enter Your Email Address", "email", "first_name"),)
 
