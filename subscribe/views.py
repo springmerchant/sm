@@ -19,7 +19,7 @@ class SubscribeView(FormView):
 
     def form_valid(self, form):
 
-        ms = MailSnake(settings.MAILCHIMP_API_KEY)
+      	ms = MailSnake(settings.MAILCHIMP_API_KEY)
 
         ms.listSubscribe(
             id = settings.MAILCHIMP_LIST_ID,
@@ -32,6 +32,12 @@ class SubscribeView(FormView):
             double_optin = True,
         )
 
+        if self.request.is_ajax():
+            return self.response_class(
+		request=self.request,
+		template='sm/subscribe/ajax/success.html', 
+		context={})
+	
         return HttpResponseRedirect(reverse('subscribe_success'))
 
 class SuccessView(TemplateView):
