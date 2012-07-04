@@ -10,10 +10,14 @@ from mailsnake import MailSnake
 
 class SubscribeView(FormView):
     form_class = SubscribeForm
-    template_name = 'sm/subscribe/subscribe.html'
+    
+    def get_template_names(self):
+        if self.request.is_ajax():
+            return ['sm/subscribe/ajax/subscribe.html']
+        else:
+            return ['sm/subscribe/subscribe.html']    
 
     def form_valid(self, form):
-
 
         ms = MailSnake(settings.MAILCHIMP_API_KEY)
 
@@ -27,6 +31,7 @@ class SubscribeView(FormView):
             update_existing = True,
             double_optin = True,
         )
+
         return HttpResponseRedirect(reverse('subscribe_success'))
 
 class SuccessView(TemplateView):
