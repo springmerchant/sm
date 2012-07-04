@@ -1,4 +1,5 @@
-<form class="form-inline">
-    <input type="text" id="email"  class="input-small" name="email" placeholder="Email">
-    <input type="text" id="name" class="input-small" name="first_name" placeholder="First Name">
-</form>
+    {% if form.errors %}
+        <p>Please fix the errors below</p>
+    {% endif %}
+    <input type="text" id="email"  class="{% if form.email.errors %} error {% endif %}input-small" name="email" placeholder="Email">
+    <input type="text" id="name" class="{% if form.first_name.errors %} error {% endif %}input-small" name="first_name" placeholder="First Name">
